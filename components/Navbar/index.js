@@ -6,8 +6,6 @@ const Navbar = styled('nav')(() => ({
   color: '#fff',
   width: '100%',
   position: 'fixed',
-  top: 0,
-  left: 0,
   zIndex: 1000,
 }));
 
