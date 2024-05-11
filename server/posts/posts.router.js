@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
 
   const postsWithImages = await Promise.all(
     posts.map(async post => {
-      // TODO use this route to fetch photos for each post
       const { data: photos } = await axios.get(
         `https://jsonplaceholder.typicode.com/albums/${post.id}/photos`,
       );
