@@ -30,12 +30,7 @@ const useWithUserData = () => {
     };
 
     fetchUsers();
-
-    // Cleanup function
-    return () => {
-      // Any cleanup code here
-    };
-  }, []); // Empty dependency array ensures the effect runs only once
+  }, []);
 
   useEffect(() => {
     const filterAndSortUsers = () => {
