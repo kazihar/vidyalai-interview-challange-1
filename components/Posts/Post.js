@@ -126,8 +126,10 @@ const Post = ({ post }) => {
   const getAuthorProfilePhotoContent = name => {
     const splittedName = name.split(' ');
     if (splittedName.length > 1) {
+    // return first letters of first name and last name
       return `${splittedName[0][0].toUpperCase()}${splittedName[1][0].toUpperCase()}`;
     } else if (splittedName.length == 1) {
+      // return first letters of two letters of the name if no last name present
       return `${splittedName[0][0].toUpperCase()}${splittedName[0][1].toUpperCase()}`;
     }
   };
