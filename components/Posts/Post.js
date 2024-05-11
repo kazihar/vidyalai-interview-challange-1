@@ -103,11 +103,12 @@ const NextButton = styled(Button)`
 
 const Post = ({ post }) => {
   const carouselRef = useRef(null);
-
+  const SCROLL_LENGTH = 300;
+  
   const handleNextClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
-        left: 300,
+        left: SCROLL_LENGTH,
         behavior: 'smooth',
       });
     }
@@ -116,7 +117,7 @@ const Post = ({ post }) => {
   const handlePrevClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
-        left: -300,
+        left: -SCROLL_LENGTH,
         behavior: 'smooth',
       });
     }
