@@ -138,8 +138,8 @@ const Post = ({ post }) => {
           <p>{getAuthorProfilePhotoContent(post.userName)}</p>
         </AuthorProfilePhoto>
         <AuthorDetails>
-          <p className="username">{post.userName}</p>
-          <p className="email">{post.userEmail}</p>
+          <p className={'username'}>{post.userName}</p>
+          <p className={'email'}>{post.userEmail}</p>
         </AuthorDetails>
       </AuthorDetailsContainer>
       <CarouselContainer>

@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
       const postImages = photos.map(image => {
         return { url: image.url };
       });
-      console.log(user);
+
       return {
         ...post,
         images: postImages,
