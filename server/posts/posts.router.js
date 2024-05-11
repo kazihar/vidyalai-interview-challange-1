@@ -6,7 +6,7 @@ const { default: axios } = require('axios');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const posts = await fetchPosts();
+  const posts = await fetchPosts(req.query); //pass search query to get post with limit and start
 
   const postsWithImages = await Promise.all(
     posts.map(async post => {
