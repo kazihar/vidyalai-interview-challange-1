@@ -44,6 +44,42 @@ const Content = styled.div(() => ({
   },
 }));
 
+const AuthorDetailsContainer = styled.div(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'start',
+  alignItems: 'center',
+  padding: '10px',
+}));
+
+const AuthorProfilePhoto = styled.div(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '50%',
+  width: '40px',
+  height: '40px',
+  backgroundColor: '#808080',
+  '& > p': {
+    color: '#ffffff',
+    fontWeight: 'bolder',
+    fontSize: 'larger',
+  },
+}));
+
+const AuthorDetails = styled.div(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  marginLeft: '10px',
+  '& > .username': {
+    fontSize: 'larger',
+    fontWeight: 'bolder',
+  },
+  '& > .email': {
+    fontSize: 'medium',
+  },
+}));
+
 const Button = styled.button(() => ({
   position: 'absolute',
   bottom: 0,
@@ -57,19 +93,22 @@ const Button = styled.button(() => ({
 
 const PrevButton = styled(Button)`
   left: 10px;
+  bottom: 140px;
 `;
 
 const NextButton = styled(Button)`
   right: 10px;
+  bottom: 140px;
 `;
 
 const Post = ({ post }) => {
   const carouselRef = useRef(null);
-
+  const SCROLL_LENGTH = 300;
+  
   const handleNextClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
-        left: 50,
+        left: SCROLL_LENGTH,
         behavior: 'smooth',
       });
     }
@@ -78,14 +117,34 @@ const Post = ({ post }) => {
   const handlePrevClick = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({
-        left: -70,
+        left: -SCROLL_LENGTH,
         behavior: 'smooth',
       });
     }
   };
 
+  const getAuthorProfilePhotoContent = name => {
+    const splittedName = name.split(' ');
+    if (splittedName.length > 1) {
+    // return first letters of first name and last name
+      return `${splittedName[0][0].toUpperCase()}${splittedName[1][0].toUpperCase()}`;
+    } else if (splittedName.length == 1) {
+      // return first letters of two letters of the name if no last name present
+      return `${splittedName[0][0].toUpperCase()}${splittedName[0][1].toUpperCase()}`;
+    }
+  };
+
   return (
     <PostContainer>
+      <AuthorDetailsContainer>
+        <AuthorProfilePhoto>
+          <p>{getAuthorProfilePhotoContent(post.userName)}</p>
+        </AuthorProfilePhoto>
+        <AuthorDetails>
+          <p className={'username'}>{post.userName}</p>
+          <p className={'email'}>{post.userEmail}</p>
+        </AuthorDetails>
+      </AuthorDetailsContainer>
       <CarouselContainer>
         <Carousel ref={carouselRef}>
           {post.images.map((image, index) => (
